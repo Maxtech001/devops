@@ -94,11 +94,11 @@
 	</dependencies>	
 
   <distributionManagement>
-      <releasesrepository>
+      <repository>
         <id>nexus</id>
         <name>Landmark Technologies Releases Nexus Repository</name>
         <url>http://3.90.105.29:8081/max/repository/tesla-be-releases/</url>
-      </releasesrepository>
+      </repository>
       
       <snapshotRepository>
         <id>nexus</id>
