@@ -8,9 +8,9 @@
 	
 	<version>0.0.2-SNAPSHOT</version> 
 	
-	<name>mavent-web-application</name>
+	<name>maven-web-application</name>
 
-	<description>Mavent Web Project for Java Project</description>
+	<description>Maven Web Project for Java Project</description>
 
 	<organization>
 		<name>Landmark Technologies</name>
