@@ -8,7 +8,7 @@
 <link href="images/mylandmarklogo.png" rel="icon">
 <style>
   body {
-    background-color: #d2b48c; /* light brown */
+    background-color: #90ee90; /* light brown */
     font-family: Arial, sans-serif;
     font-weight: bold;
   }
