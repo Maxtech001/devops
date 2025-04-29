@@ -1,0 +1,39 @@
+//jenkinfile script coded in groovy
+
+node{
+    def mavenHome = tool name:"maven 3.9.9"
+	stage('1clone'){
+	git "https://github.com/Maxtech001/devops"
+	}
+	stage('2Test+Build'){
+	    sh "${mavenHome}/bin/mvn clean package"
+	}	
+	stage('3codeQualityAnalysis'){
+	    sh "${mavenHome}/bin/mvn sonar:sonar"
+	}
+	stage('4uploads2Nexus'){
+	    sh "${mavenHome}/bin/mvn deploy"
+	}
+	stage('5deploy2UAT'){
+	 deploy adapters: [tomcat9(credentialsId: 'adkey', path: '', url: 'http://34.235.151.204:8008/tesla/')], contextPath: null, war: 'target/*war'
+	}
+	stage('6ManualApproval'){
+	 sh "echo 'the project is ready for deployment please reveiew' "   
+	    timeout(time:6, unit:'HOURS'){
+	        input message: 'Please review and approve'
+	    }
+	    
+	}
+	stage('7deploy2prod'){
+	    deploy adapters: [tomcat9(credentialsId: 'adkey', path: '', url: 'http://34.235.151.204:8008/tesla/')], contextPath: null, war: 'target/*war'
+	}
+	stage('8notification'){
+   emailext body: '''Hi Engineers
+
+This is to inform you that the application has been deployed successfully.
+
+Regards
+
+Engr Jude''', recipientProviders: [developers()], subject: 'Successful application deployment', to: 'jude.e449@gmail.com'
+} 
+}
